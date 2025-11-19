@@ -88,7 +88,7 @@ function checkCell(cell, row, col) {
 
   // Reset the clicked letters if word is not found
   if (!wordFound) {
-    resetClickedLetters();  // Reset color for incorrect guesses
+    clickedLetters = [];
   }
 }
 
@@ -111,15 +111,6 @@ function highlightWord(clickedLetters, word) {
 
   // Add the word to foundWords list
   foundWords.push(word);
-}
-
-// Reset clicked letters if incorrect
-function resetClickedLetters() {
-  clickedLetters.forEach(letter => {
-    const element = document.querySelector(`[data-row='${letter.row}'][data-col='${letter.col}']`);
-    element.classList.remove('highlight'); // Remove highlight for incorrect guesses
-  });
-  clickedLetters = []; // Reset clicked letters array
 }
 
 // Hint button to show hints
