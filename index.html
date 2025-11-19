@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Market Word Search</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.youtube.com/iframe_api"></script> <!-- YouTube Iframe API -->
+</head>
+<body>
+  <!-- Audio player embedded from YouTube (no video, just audio) -->
+  <iframe id="audio-player"
+          width="0" height="0"
+          src="https://www.youtube.com/embed/DA-m6OrZZyk?autoplay=1&mute=0&loop=1&playlist=DA-m6OrZZyk"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+  </iframe>
+
+  <!-- Page 1: Login Page -->
+  <div class="background-animation"></div> <!-- Geometric animation -->
+  <div class="login-container">
+    <div class="header">
+      <h1>Let's Find the Words about Stock Market!</h1>
+    </div>
+    <div class="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter password" required>
+      <button onclick="checkLogin()">Submit</button>
+      <p id="login-error" style="color: red;"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Global variable to store the YouTube player
+    let player;
+
+    // This function is called when the API is ready and initializes the YouTube player
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('audio-player', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    // Function called when player is ready
+    function onPlayerReady(event) {
+      event.target.unMute();  // Unmute the video so it starts with sound
+    }
+
+    // Check login function (for username and password validation)
+    function checkLogin() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Check if the entered username and password are correct
+      if (username === 'unssaf' && password === 'init14tor') {
+        // If correct, redirect to the game page (page 2)
+        window.location.href = 'game.html';
+      } else {
+        // If incorrect, show an error message
+        document.getElementById('login-error').textContent = 'Invalid username or password!';
+      }
+    }
+  </script>
+</body>
+</html>

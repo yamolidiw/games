@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Market Word Search</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.youtube.com/iframe_api"></script> <!-- YouTube Iframe API -->
+</head>
+<body>
+  <!-- Video sebagai background -->
+  <div id="bg-video-container"></div> <!-- Video container -->
+
+  <!-- Content of the page -->
+  <div class="game-container">
+    <div class="header">
+      <h1>Find the Words!</h1>
+    </div>
+
+    <!-- Word search grid -->
+    <div class="word-search">
+      <!-- Grid will be generated dynamically with JavaScript -->
+    </div>
+
+    <button id="hint-button">Hint</button>
+    <div id="hint" style="display: none;">
+      <p>Click the letters to find hidden words!</p>
+    </div>
+
+    <div class="audio-controls">
+      <button id="play-music">Play Music</button>
+      <button id="pause-music">Pause Music</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+
+  <script>
+    // Global variable to store the YouTube player
+    let player;
+
+    // This function is called when the API is ready and initializes the YouTube player
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('bg-video-container', {
+        height: '100%',
+        width: '100%',
+        videoId: 'I4DjUEuBFBE', // ID of the new video to embed
+        playerVars: {
+          autoplay: 1,    // Autoplay the video
+          mute: 1,        // Start muted
+          loop: 1,        // Loop the video
+          playlist: 'I4DjUEuBFBE', // Ensure it loops the same video
+          controls: 0,    // Hide YouTube controls
+          showinfo: 0,    // Hide video info
+          modestbranding: 1, // Remove branding
+          rel: 0          // Disable related videos
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    // Function called when player is ready
+    function onPlayerReady(event) {
+      event.target.unMute();  // Unmute the video once it's ready
+    }
+
+    // Function to unmute the video when Play Music is clicked
+    document.getElementById('play-music').addEventListener('click', function() {
+      if (player) {
+        player.unMute();  // Unmute the video (if muted)
+      }
+    });
+
+    // Function to mute the video when Pause Music is clicked
+    document.getElementById('pause-music').addEventListener('click', function() {
+      if (player) {
+        player.mute();  // Mute the video
+      }
+    });
+  </script>
+</body>
+</html>
