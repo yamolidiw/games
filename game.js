@@ -1,9 +1,12 @@
 // Words to find
-const wordsToFind = ['IPO', 'BROKER', 'INDICES', 'BULLISH', 'BEARISH', 'GAIN', 'VOLATILITY', 'BID'];
+const wordsToFind = ['SAHAM', 'EMITEN', 'BURSA', 'DIVIDEN', 'PORTOFOLIO', 'IPO', 'MARKET', 'TAKEPROFIT', 'CUTLOSS', 'STOPLOSS'];
 const gridSize = 10;
 let grid = [];
 let clickedLetters = [];
 let foundWords = [];
+let timer;
+let timeLeft = 60; // Set timer to 60 seconds
+let gameStarted = false;
 
 // Generate grid with random letters and place the words
 function generateGrid() {
@@ -113,11 +116,49 @@ function highlightWord(clickedLetters, word) {
   foundWords.push(word);
 }
 
-// Hint button to show hints
-document.getElementById('hint-button').addEventListener('click', () => {
-  const hint = document.getElementById('hint');
-  hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+// Timer functions
+function startTimer() {
+  if (gameStarted) return; // Prevent multiple timer starts
+  gameStarted = true;
+  timer = setInterval(function() {
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      alert('Time is up!');
+      endGame();
+    } else {
+      timeLeft--;
+      document.getElementById('timer-display').textContent = 'Time: ' + timeLeft + 's';
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  timeLeft = 60;
+  document.getElementById('timer-display').textContent = 'Time: 0s';
+  gameStarted = false;
+}
+
+// End Game Button
+document.getElementById('end-game').addEventListener('click', function() {
+  let score = foundWords.length === 10 ? 100 : foundWords.length * 10;
+  alert('Game Over! Your score: ' + score);
+  resetTimer();
+  endGame();
 });
 
-// Start the game
+// New Game Button
+document.getElementById('new-game').addEventListener('click', function() {
+  resetTimer();
+  foundWords = [];
+  clickedLetters = [];
+  generateGrid();
+  document.querySelectorAll('.word-search span').forEach(cell => {
+    cell.classList.remove('highlight', 'found');
+  });
+});
+
+// Start Timer Button
+document.getElementById('start-timer').addEventListener('click', startTimer);
+
+// Start the game with a new grid
 generateGrid();
