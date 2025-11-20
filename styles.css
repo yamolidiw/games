@@ -32,6 +32,99 @@ body {
   }
 }
 
+/* Karakter Animasi Bouncing */
+.bouncing-character {
+  font-size: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite; /* Menambahkan animasi bounce */
+}
+
+/* Animasi Bouncing */
+@keyframes bounce {
+  0% {
+    transform: translate(-50%, 0); /* Mulai dari bawah */
+  }
+  50% {
+    transform: translate(-50%, -200px); /* Pergi ke atas */
+  }
+  100% {
+    transform: translate(-50%, 0); /* Kembali ke bawah */
+  }
+}
+
+/* Login Container */
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3); /* Dark background for the grid */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Login Form */
+.login-form {
+  flex: 1;
+  padding: 20px;
+  text-align: left;
+}
+
+.login-form h1 {
+  font-size: 2em;
+  color: white;
+}
+
+.login-form label {
+  color: white;
+  margin-top: 10px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #45a049;
+}
+
+#login-error {
+  color: red;
+  font-size: 14px;
+}
+
+/* Image Section */
+.login-image {
+  flex: 1;
+  text-align: center;
+}
+
+.login-image img {
+  width: 100%;  /* Atur lebar gambar agar responsif */
+  max-width: 400px; /* Sesuaikan lebar maksimum gambar */
+  height: auto;   /* Menjaga rasio gambar tetap benar */
+  border-radius: 10px;
+}
+
 /* Game container */
 .game-container {
   background-color: rgba(0, 0, 0, 0.7); /* Dark background for the grid */
@@ -144,4 +237,67 @@ body {
 .word-search span.found {
   background-color: #f1c40f; /* Yellow color for found word */
   color: black;
+}
+
+/* Each cell */
+.word-search span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: #444;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .game-container {
+    width: 90%; /* Make it take up more of the screen */
+  }
+  .word-search {
+    grid-template-columns: repeat(5, 1fr); /* Reduce grid to 5 columns */
+    grid-template-rows: repeat(5, 1fr); /* Reduce grid to 5 rows */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .game-container {
+    width: 95%; /* Full width on very small devices */
+  }
+  .word-search {
+    grid-template-columns: repeat(4, 1fr); /* Reduce grid further */
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+/* Game controls styling */
+.game-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.game-controls button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.game-controls button:hover {
+  background-color: #45a049;
+}
+
+/* Timer styling */
+#timer {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
 }
