@@ -18,18 +18,28 @@
   </iframe>
 
   <!-- Page 1: Login Page -->
-  <div class="background-animation"></div> <!-- Geometric animation -->
+  <div class="background-animation">
+  </div>
+
   <div class="login-container">
-    <div class="header">
-      <h1>Let's Find the Words about Stock Market!</h1>
-    </div>
+    <!-- Form Login -->
     <div class="login-form">
+      <div class="header">
+        <h1>Let's Find the Words about Stock Market!</h1>
+      </div>
       <label for="username">Username:</label>
       <input type="text" id="username" placeholder="Enter username" required>
+      
       <label for="password">Password:</label>
       <input type="password" id="password" placeholder="Enter password" required>
+      
       <button onclick="checkLogin()">Submit</button>
       <p id="login-error" style="color: red;"></p>
+    </div>
+
+    <!-- Gambar Karakter di sebelah kanan -->
+    <div class="login-image">
+      <img src="images/character.png" alt="Character"> <!-- Path baru menuju gambar -->
     </div>
   </div>
 
